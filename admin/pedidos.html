@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Panel de Administración</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- Icono de la pagina -->
+    <link rel="icon" href="./img/vinilo.png" type="image/png">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3" id="menu">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <span class="text-light fs-5 fw-bold">Panel de Administración</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usuarios.html">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pedidos.html">Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inventario.html">Inventario</a>
+                    </li>
+                </ul>
+                <!-- Enlace para salir -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../usuario/indexiniciado.html">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <div class="container">
+        <h2>Lista de Pedidos</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Usuario</th>
+                    <th>Producto</th>
+                    <th>Dirección</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos ficticios de pedidos -->
+                <tr data-id-pedido="1">
+                    <td>1</td>
+                    <td>Usuario 1</td>
+                    <td>Producto A</td>
+                    <td>Dirección 1, Ciudad A</td>
+                    <td><span class="badge bg-danger">Cancelado</span></td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarPedidoModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                </tr>
+                <tr data-id-pedido="2">
+                    <td>2</td>
+                    <td>Usuario 2</td>
+                    <td>Producto B</td>
+                    <td>Dirección 2, Ciudad B</td>
+                    <td><span class="badge bg-warning text-dark">En camino</span></td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarPedidoModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                </tr>
+                <tr data-id-pedido="3">
+                    <td>3</td>
+                    <td>Usuario 3</td>
+                    <td>Producto C</td>
+                    <td>Dirección 3, Ciudad C</td>
+                    <td><span class="badge bg-success">Entregado</span></td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarPedidoModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para editar pedido -->
+    <div class="modal fade" id="editarPedidoModal" tabindex="-1" aria-labelledby="editarPedidoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarPedidoModalLabel">Editar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para editar el pedido -->
+                    <form id="formularioEditarPedido">
+                        <div class="mb-3">
+                            <label for="estadoPedido" class="form-label">Estado</label>
+                            <select class="form-select" id="estadoPedido">
+                                <option value="1">En proceso</option>
+                                <option value="2">En camino</option>
+                                <option value="3">Entregado</option>
+                                <option value="4">Cancelado</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="guardarCambiosPedido">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <!-- Bootstrap JS (opcional si necesitas funcionalidades de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Botón Eliminar Pedido
+            document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Eliminar el pedido de la interfaz
+                    btn.closest('tr').remove();
+                });
+            });
+
+            // Botón Editar Pedido
+            document.querySelectorAll('.btn-editar').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Obtener los datos del pedido de la fila seleccionada
+                    const fila = btn.closest('tr');
+                    const estadoPedido = fila.querySelector('td:nth-child(5)').innerText.trim();
+
+                    // Llenar el formulario de edición con los datos del pedido
+                    document.getElementById('estadoPedido').value = estadoPedido;
+
+                    // Almacenar el ID del pedido en un atributo de datos del formulario
+                    document.getElementById('formularioEditarPedido').setAttribute('data-id-pedido', fila.dataset.idPedido);
+                });
+            });
+
+            // Botón Guardar cambios del pedido
+            document.getElementById('guardarCambiosPedido').addEventListener('click', () => {
+                // Obtener el ID del pedido del formulario
+                const idPedido = document.getElementById('formularioEditarPedido').getAttribute('data-id-pedido');
+
+                // Obtener el nuevo estado del pedido del formulario
+                const estadoPedido = document.getElementById('estadoPedido').value;
+                let estadoBadge;
+                switch (estadoPedido) {
+                    case '1':
+                        estadoBadge = '<span class="badge bg-danger">En proceso</span>';
+                        break;
+                    case '2':
+                        estadoBadge = '<span class="badge bg-warning text-dark">En camino</span>';
+                        break;
+                    case '3':
+                        estadoBadge = '<span class="badge bg-success">Entregado</span>';
+                        break;
+                    case '4':
+                        estadoBadge = '<span class="badge bg-secondary">Cancelado</span>';
+                        break;
+                    default:
+                        estadoBadge = '';
+                }
+
+                // Actualizar el estado del pedido en la fila correspondiente
+                const fila = document.querySelector(`tr[data-id-pedido="${idPedido}"]`);
+                fila.querySelector('td:nth-child(5)').innerHTML = estadoBadge;
+
+                // Cerrar el modal de edición
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editarPedidoModal'));
+                modal.hide();
+            });
+        });
+    </script>
+</body>
+
+</html>

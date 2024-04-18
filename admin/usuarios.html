@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Panel de Administración</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- Icono de la pagina -->
+    <link rel="icon" href="./img/vinilo.png" type="image/png">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3" id="menu">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <span class="text-light fs-5 fw-bold">Panel de Administración</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usuarios.html">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pedidos.html">Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inventario.html">Inventario</a>
+                    </li>
+                </ul>
+                <!-- Enlace para salir -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../usuario/indexiniciado.html">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <div class="container">
+        <h2>Lista de Usuarios</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos ficticios de usuarios -->
+                <tr data-id-usuario="1">
+                    <td>1</td>
+                    <td>Usuario 1</td>
+                    <td>usuario1@example.com</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarUsuarioModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                </tr>
+                <tr data-id-usuario="2">
+                    <td>2</td>
+                    <td>Usuario 2</td>
+                    <td>usuario2@example.com</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarUsuarioModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                </tr>
+                <!-- Agregar más usuarios aquí -->
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">
+            <i class="fas fa-user-plus"></i> Agregar Usuario
+        </button>
+    </div>
+
+    <!-- Modal para editar usuario -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para editar el usuario -->
+                    <form id="formularioEditarUsuario">
+                        <div class="mb-3">
+                            <label for="nombreUsuario" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombreUsuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailUsuario" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="emailUsuario">
+                        </div>
+                        <input type="hidden" id="idUsuario">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="guardarCambiosUsuario">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar usuario -->
+    <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="agregarUsuarioModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarUsuarioModalLabel">Agregar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para agregar un nuevo usuario -->
+                    <form id="formularioAgregarUsuario">
+                        <div class="mb-3">
+                            <label for="nombreNuevoUsuario" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombreNuevoUsuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailNuevoUsuario" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="emailNuevoUsuario">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="agregarNuevoUsuario">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <!-- Bootstrap JS (opcional si necesitas funcionalidades de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Función para asociar eventos a los botones de editar y eliminar
+            function asociarEventos() {
+                // Botón Eliminar Usuario
+                document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Eliminar el usuario de la interfaz
+                        btn.closest('tr').remove();
+                    });
+                });
+
+                // Botón Editar Usuario
+                document.querySelectorAll('.btn-editar').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Obtener los datos del usuario de la fila seleccionada
+                        const fila = btn.closest('tr');
+                        const idUsuario = fila.dataset.idUsuario;
+                        const nombreUsuario = fila.querySelector('td:nth-child(2)').innerText;
+                        const emailUsuario = fila.querySelector('td:nth-child(3)').innerText;
+
+                        // Llenar el formulario de edición con los datos del usuario
+                        document.getElementById('idUsuario').value = idUsuario;
+                        document.getElementById('nombreUsuario').value = nombreUsuario;
+                        document.getElementById('emailUsuario').value = emailUsuario;
+                    });
+                });
+
+                // Botón Guardar cambios del usuario
+                document.getElementById('guardarCambiosUsuario').addEventListener('click', () => {
+                    // Obtener el ID del usuario del formulario
+                    const idUsuario = document.getElementById('idUsuario').value;
+
+                    // Obtener los nuevos valores del usuario del formulario
+                    const nombreUsuario = document.getElementById('nombreUsuario').value;
+                    const emailUsuario = document.getElementById('emailUsuario').value;
+
+                    // Actualizar los datos del usuario en la fila correspondiente
+                    const fila = document.querySelector(`tr[data-id-usuario="${idUsuario}"]`);
+                    fila.querySelector('td:nth-child(2)').innerText = nombreUsuario;
+                    fila.querySelector('td:nth-child(3)').innerText = emailUsuario;
+
+                    // Cerrar el modal de edición
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal'));
+                    modal.hide();
+                });
+            }
+
+            // Llamar a la función para asociar eventos a los botones
+            asociarEventos();
+
+            // Botón Agregar Nuevo Usuario
+            document.getElementById('agregarNuevoUsuario').addEventListener('click', () => {
+                // Obtener el ID del último usuario y agregar 1 para el nuevo ID
+                const ultimaFila = document.querySelector('tbody tr:last-child');
+                let nuevoID = 1;
+                if (ultimaFila) {
+                    nuevoID = parseInt(ultimaFila.dataset.idUsuario) + 1;
+                }
+
+                // Obtener los valores del nuevo usuario del formulario
+                const nombreNuevoUsuario = document.getElementById('nombreNuevoUsuario').value;
+                const emailNuevoUsuario = document.getElementById('emailNuevoUsuario').value;
+
+                // Crear una nueva fila para el nuevo usuario
+                const nuevaFila = document.createElement('tr');
+                nuevaFila.setAttribute('data-id-usuario', nuevoID);
+                nuevaFila.innerHTML = `
+                    <td>${nuevoID}</td>
+                    <td>${nombreNuevoUsuario}</td>
+                    <td>${emailNuevoUsuario}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal"
+                            data-bs-target="#editarUsuarioModal"><i class="far fa-edit"></i> Editar</button>
+                    </td>
+                `;
+
+                // Agregar la nueva fila a la tabla
+                document.querySelector('tbody').appendChild(nuevaFila);
+
+                // Limpiar el formulario después de agregar el usuario
+                document.getElementById('formularioAgregarUsuario').reset();
+
+                // Reasociar eventos a los botones de editar y eliminar
+                asociarEventos();
+
+                // Cerrar el modal de agregar usuario
+                const modal = bootstrap.Modal.getInstance(document.getElementById('agregarUsuarioModal'));
+                modal.hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
